@@ -1,8 +1,10 @@
+'''Importing Enum to create a Resource instead of using strings'''
 from enum import Enum
 from typing import Dict
 
 
 class Resource(Enum):
+    '''Contains two-way casting for resource object'''
     WATER = 'water'
     COFFEE = 'coffee'
     MILK = 'milk'
@@ -10,16 +12,16 @@ class Resource(Enum):
 
     @staticmethod
     def from_str(label):
+        '''Creates a Resource object from string'''
         if label == 'water':
             return Resource.WATER
-        elif label == 'coffee':
+        if label == 'coffee':
             return Resource.COFFEE
-        elif label == 'milk':
+        if label == 'milk':
             return Resource.MILK
-        elif label == 'money':
+        if label == 'money':
             return Resource.MONEY
-        else:
-            raise NotImplementedError
+        raise NotImplementedError
 
 
 RESOURCE_NAMES: Dict[Resource, str] = {

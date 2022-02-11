@@ -3,6 +3,7 @@ from report import print_report
 
 
 def process_order(resources, order):
+    '''Handles incoming customer order'''
     missing_ingredient = _has_enough_ingredient(resources, order)
 
     if missing_ingredient != '':
