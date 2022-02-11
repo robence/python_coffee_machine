@@ -9,15 +9,14 @@ def process_order(resources, order):
         print(f"​Sorry there is not enough {missing_ingredient}.\n")
         return resources
 
-    print_report(resources=resources)
-    remaining_resources = _process_coins(resources, order)
-    print_report(resources=remaining_resources)
+    if _process_coins(order):
+        remaining_resources = _process_transaction(resources, order)
     print(f"Here is your {order}. Enjoy!.\n")
     return remaining_resources
 
 
 def _has_enough_ingredient(resources, order):
-    item = MENU[order]
+    item = _get_order_item(order)
     ingredients = item['ingredients']
     missing_ingredient = ''
 
@@ -29,8 +28,23 @@ def _has_enough_ingredient(resources, order):
     return missing_ingredient
 
 
-def _process_coins(resources, order):
-    item = MENU[order]
+def _process_coins(order):
+    item = _get_order_item(order)
+    money_cost = item['cost']
+    money_inserted = True
+
+    if money_inserted:
+        print(f"{order} costs ${money_cost}.")
+        return True
+
+    print("Sorry that's not enough money. Money refunded.")
+    return False
+
+
+def _process_transaction(resources, order):
+    print_report(resources=resources)
+
+    item = _get_order_item(order)
     money_cost = item['cost']
     ingredients = item['ingredients']
 
@@ -39,4 +53,9 @@ def _process_coins(resources, order):
 
     resources['money'] += money_cost
 
+    print_report(resources=resources)
     return resources
+
+
+def _get_order_item(order):
+    return MENU[order]

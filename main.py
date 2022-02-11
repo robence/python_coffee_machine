@@ -1,10 +1,14 @@
-from data import MENU, resources
+from data import resources
 from order import process_order
 from report import print_report
 
 
+def _get_initial_resources():
+    return resources.copy()
+
+
 def create_resources():
-    initial_resources = resources.copy()
+    initial_resources = _get_initial_resources()
     initial_resources['money'] = 0
     return initial_resources
 
