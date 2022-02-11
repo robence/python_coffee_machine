@@ -1,3 +1,4 @@
+'''Import coffee shop order list'''
 from data import MENU
 from report import print_report
 

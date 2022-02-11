@@ -1,3 +1,4 @@
+'''coffee shop order and stock list'''
 MENU = {
     "espresso": {
         "ingredients": {

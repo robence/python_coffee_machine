@@ -1,3 +1,4 @@
+'''initial coffee shop resources'''
 from data import resources
 from order import process_order
 from report import print_report
@@ -28,7 +29,7 @@ def handle_customers():
 
         if choice == 'report':
             print_report(current_resources)
-        if (choice == 'espresso' or choice == 'latte' or choice == 'cappuccino'):
+        if choice in ('espresso', 'latte', 'cappuccino'):
             current_resources = process_order(
                 resources=current_resources, order=choice)
         elif choice == 'off':
