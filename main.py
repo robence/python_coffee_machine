@@ -1,10 +1,11 @@
 '''Start serving customers'''
-from coffee_shop import handle_customers
+from coffee_shop import CoffeeMaker
 
 
 def main():
     '''Operates Coffee Shop'''
-    handle_customers()
+    coffee_maker = CoffeeMaker()
+    coffee_maker.handle_customers()
 
 
 main()

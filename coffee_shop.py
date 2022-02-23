@@ -4,33 +4,28 @@ from order import process_order
 from report import print_report
 
 
-def _get_initial_resources():
-    return resources.copy()
+class CoffeeMaker:
+    '''Operates Coffee Shop'''
 
+    def __init__(self) -> None:
+        self.resources = resources.copy()
+        self.resources['money'] = 0
 
-def _create_resources():
-    initial_resources = _get_initial_resources()
-    initial_resources['money'] = 0
-    return initial_resources
+    def _ask_coffee_choice(self):
+        choice = input("What would you like? (espresso/latte/cappuccino): ")
+        return choice
 
+    def handle_customers(self):
+        '''Handles customer requests, operates coffee shop'''
+        choice = ''
 
-def _ask_coffee_choice():
-    choice = input("What would you like? (espresso/latte/cappuccino): ")
-    return choice
+        while choice != 'off':
+            choice = self._ask_coffee_choice()
 
-
-def handle_customers():
-    '''Handles customer requests, operates coffee shop'''
-    choice = ''
-    current_resources = _create_resources()
-
-    while choice != 'off':
-        choice = _ask_coffee_choice()
-
-        if choice == 'report':
-            print_report(current_resources)
-        if choice in ('espresso', 'latte', 'cappuccino'):
-            current_resources = process_order(
-                resources=current_resources, order=choice)
-        elif choice == 'off':
-            pass
+            if choice == 'report':
+                print_report(self.resources)
+            if choice in ('espresso', 'latte', 'cappuccino'):
+                self.resources = process_order(
+                    resources=self.resources, order=choice)
+            elif choice == 'off':
+                pass
